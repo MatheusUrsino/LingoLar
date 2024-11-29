@@ -2,22 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { check } from "drizzle-orm/mysql-core";
 import {
   Check,
-  Croissant,
   Crown,
-  LockIcon,
-  LucideBan,
   LucideLock,
-  LucideLockOpen,
   LucideStar,
-  Shield,
-  Star,
 } from "lucide-react";
 import Link from "next/link";
 import {
-  CircularProgressbar,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 

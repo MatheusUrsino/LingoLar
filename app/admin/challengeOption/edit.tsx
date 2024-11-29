@@ -5,10 +5,14 @@ import {
   Edit,
   required,
   ReferenceInput,
+<<<<<<< HEAD
   NumberInput,
   SelectInput,
   BooleanInput,
   FormDataConsumer,
+=======
+  BooleanInput,
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 } from "react-admin";
 
 export const ChallengeOptionEdit: React.FC = () => (

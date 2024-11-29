@@ -1,5 +1,8 @@
 // ./curso/list.tsx
+<<<<<<< HEAD
 import { courses } from "@/db/schema";
+=======
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 import {
   SimpleForm,
   TextInput,

@@ -5,8 +5,13 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export const GET = async (
+<<<<<<< HEAD
   req: Request,
   { params }: { params: { challengeId: number } }
+=======
+  _req: Request,
+  { params }: { params: { challengeId: number } },
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
@@ -38,7 +43,11 @@ export const PUT = async (
 };
 
 export const DELETE = async (
+<<<<<<< HEAD
   req: Request,
+=======
+  _req: Request,
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
   { params }: { params: { challengeId: number } }
 ) => {
   if (!isAdmin()) {

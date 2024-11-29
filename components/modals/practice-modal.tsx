@@ -18,10 +18,8 @@ export const PracticeModal = () => {
   const { isOpen, close } = usePracticeModal();
 
   useEffect(() => setIsClient(true), []);
-
-  const onClick = () => {
-    close();
-  };
+  
+// eslint-disable-next-line no-unused-vars
 
   if (!isClient) {
     return null;

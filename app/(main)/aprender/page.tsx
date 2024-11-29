@@ -6,7 +6,12 @@ import { UserProgress } from "@/components/user-progress";
 import { getCourseProgress, getLessonPercentage, getUnits, getUserProgress, getUserSubscription } from "@/db/queries";
 import { redirect } from "next/navigation";
 import { Unit } from "./Unit";
+<<<<<<< HEAD
 import { lessons, units as unitsSchema, userSubscription } from "@/db/schema";
+=======
+// eslint-disable-next-line no-unused-vars
+import { lessons, units as unitsSchema } from "@/db/schema";
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
 

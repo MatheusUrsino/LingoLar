@@ -5,7 +5,7 @@ import db from "@/db/drizzle";
 import { getCoursesById, getUserProgress, getUserSubscription } from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { error } from "console";
+// eslint-disable-next-line no-unused-vars
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

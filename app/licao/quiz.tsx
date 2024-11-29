@@ -24,9 +24,17 @@ type Props = {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
+<<<<<<< HEAD
   userSubscription: typeof userSubscription.$inferSelect & {
     isActive: boolean;
   } | null;
+=======
+  userSubscription:
+    | (typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 };
 
 export const Quiz = ({
@@ -40,7 +48,7 @@ export const Quiz = ({
   const { open: openPracticeModal } = usePracticeModal();
 
   useMount(() => {
-    if(initialPercentage === 100){
+    if (initialPercentage === 100) {
       openPracticeModal();
     }
   });
@@ -49,11 +57,14 @@ export const Quiz = ({
 
   const router = useRouter();
 
+  // eslint-disable-next-line no-unused-vars
   const [correctAudio, _c, correctControls] = useAudio({ src: "/correto.mp3" });
+  // eslint-disable-next-line no-unused-vars
   const [incorrectAudio, _i, incorrectControls] = useAudio({
     src: "/errado.mp3",
   });
-  const [finishAudio, _f, finishControls] = useAudio({
+  // eslint-disable-next-line no-unused-vars
+  const [finishAudio, _f] = useAudio({
     src: "/completado.mp3",
     autoPlay: true,
   });

@@ -5,7 +5,11 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export const GET = async (
+<<<<<<< HEAD
   req: Request,
+=======
+  _req: Request,
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
   { params }: { params: { lessonId: number } }
 ) => {
   if (!isAdmin()) {
@@ -38,7 +42,11 @@ export const PUT = async (
 };
 
 export const DELETE = async (
+<<<<<<< HEAD
   req: Request,
+=======
+  _req: Request,
+>>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
   { params }: { params: { lessonId: number } }
 ) => {
   if (!isAdmin()) {
