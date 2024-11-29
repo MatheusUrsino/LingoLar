@@ -2,17 +2,18 @@ import db from "@/db/drizzle";
 import { challengeOptions } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
+// O parâmetro 'params' é inferido pelo Next.js, então não precisa ser explicitamente tipado
 export const GET = async (
-  _req: Request,
-  { params }: { params: { challengeOptionId: string } }
+  _req: NextRequest, 
+  { params }: { params: { challengeOptionId: string } } // Use o tipo correto para params
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  // Converte challengeOptionId para número
+  // Converter o parâmetro para número
   const challengeOptionId = Number(params.challengeOptionId);
 
   if (isNaN(challengeOptionId)) {
@@ -27,7 +28,7 @@ export const GET = async (
 };
 
 export const PUT = async (
-  req: Request,
+  req: NextRequest, 
   { params }: { params: { challengeOptionId: string } }
 ) => {
   if (!isAdmin()) {
@@ -35,8 +36,6 @@ export const PUT = async (
   }
 
   const body = await req.json();
-
-  // Converte challengeOptionId para número
   const challengeOptionId = Number(params.challengeOptionId);
 
   if (isNaN(challengeOptionId)) {
@@ -55,24 +54,20 @@ export const PUT = async (
 };
 
 export const DELETE = async (
-  req: Request,
+  req: NextRequest, 
   { params }: { params: { challengeOptionId: string } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  // Converte challengeOptionId para número
   const challengeOptionId = Number(params.challengeOptionId);
 
   if (isNaN(challengeOptionId)) {
     return new Response("Invalid challengeOptionId", { status: 400 });
   }
 
-  const data = await db
-    .delete(challengeOptions)
-    .where(eq(challengeOptions.id, challengeOptionId))
-    .returning();
+  const data = await db.delete(challengeOptions).where(eq(challengeOptions.id, challengeOptionId)).returning();
 
   return NextResponse.json(data[0]);
 };
