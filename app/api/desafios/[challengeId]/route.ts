@@ -2,11 +2,11 @@ import db from "@/db/drizzle";
 import { challenges } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const GET = async (
-  _req: NextRequest,
-  { params }: { params: { challengeId: number } }
+  _req: Request,
+  { params }: { params: { challengeId: number } },
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
@@ -19,7 +19,7 @@ export const GET = async (
 };
 
 export const PUT = async (
-  req: NextRequest,
+  req: Request,
   { params }: { params: { challengeId: number } }
 ) => {
   if (!isAdmin()) {
@@ -38,7 +38,7 @@ export const PUT = async (
 };
 
 export const DELETE = async (
-  _req: NextRequest,
+  _req: Request,
   { params }: { params: { challengeId: number } }
 ) => {
   if (!isAdmin()) {
