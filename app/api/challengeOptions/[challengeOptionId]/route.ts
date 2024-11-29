@@ -5,16 +5,22 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export const GET = async (
-  req: Request,
-  { params }: { params: { challengeOptionId: string } } // Mudança para string, já que os parâmetros de URL são strings
+  _req: Request,
+  { params }: { params: { challengeOptionId: string } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  // Converte challengeOptionId para número, pois o valor é string por padrão
+  // Converte challengeOptionId para número
+  const challengeOptionId = Number(params.challengeOptionId);
+
+  if (isNaN(challengeOptionId)) {
+    return new Response("Invalid challengeOptionId", { status: 400 });
+  }
+
   const data = await db.query.challengeOptions.findFirst({
-    where: eq(challengeOptions.id, parseInt(params.challengeOptionId, 10)),
+    where: eq(challengeOptions.id, challengeOptionId),
   });
 
   return NextResponse.json(data);
@@ -22,19 +28,27 @@ export const GET = async (
 
 export const PUT = async (
   req: Request,
-  { params }: { params: { challengeOptionId: string } } // Mudança para string
+  { params }: { params: { challengeOptionId: string } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
   const body = await req.json();
+
+  // Converte challengeOptionId para número
+  const challengeOptionId = Number(params.challengeOptionId);
+
+  if (isNaN(challengeOptionId)) {
+    return new Response("Invalid challengeOptionId", { status: 400 });
+  }
+
   const data = await db
     .update(challengeOptions)
     .set({
       ...body,
     })
-    .where(eq(challengeOptions.id, parseInt(params.challengeOptionId, 10))) // Converte para número
+    .where(eq(challengeOptions.id, challengeOptionId))
     .returning();
 
   return NextResponse.json(data[0]);
@@ -42,15 +56,22 @@ export const PUT = async (
 
 export const DELETE = async (
   req: Request,
-  { params }: { params: { challengeOptionId: string } } // Mudança para string
+  { params }: { params: { challengeOptionId: string } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
+  // Converte challengeOptionId para número
+  const challengeOptionId = Number(params.challengeOptionId);
+
+  if (isNaN(challengeOptionId)) {
+    return new Response("Invalid challengeOptionId", { status: 400 });
+  }
+
   const data = await db
     .delete(challengeOptions)
-    .where(eq(challengeOptions.id, parseInt(params.challengeOptionId, 10))) // Converte para número
+    .where(eq(challengeOptions.id, challengeOptionId))
     .returning();
 
   return NextResponse.json(data[0]);
