@@ -6,20 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { unitId: string } }  // Alterado para 'string'
+  { params }: { params: { unitId: number } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
-
-  const unitId = Number(params.unitId);
-
-  if (isNaN(unitId)) {
-    return new Response("Invalid unitId", { status: 400 });
-  }
-
   const data = await db.query.units.findFirst({
-    where: eq(units.id, unitId),
+    where: eq(units.id, params.unitId),
   });
 
   return NextResponse.json(data);
@@ -27,45 +20,32 @@ export const GET = async (
 
 export const PUT = async (
   req: NextRequest,
-  { params }: { params: { unitId: string } }  // Alterado para 'string'
+  { params }: { params: { unitId: number } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
   const body = await req.json();
-  const unitId = Number(params.unitId);
-
-  if (isNaN(unitId)) {
-    return new Response("Invalid unitId", { status: 400 });
-  }
-
   const data = await db
     .update(units)
     .set({
       ...body,
     })
-    .where(eq(units.id, unitId))
-    .returning();
+    .where(eq(units.id, params.unitId)).returning();
 
   return NextResponse.json(data[0]);
 };
 
 export const DELETE = async (
   req: NextRequest,
-  { params }: { params: { unitId: string } }  // Alterado para 'string'
+  { params }: { params: { unitId: number } }
 ) => {
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  const unitId = Number(params.unitId);
-
-  if (isNaN(unitId)) {
-    return new Response("Invalid unitId", { status: 400 });
-  }
-
-  const data = await db.delete(units).where(eq(units.id, unitId)).returning();
+  const data = await db.delete(units).where(eq(units.id, params.unitId)).returning();
 
   return NextResponse.json(data[0]);
 };
