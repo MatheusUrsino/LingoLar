@@ -2,22 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { check } from "drizzle-orm/mysql-core";
 import {
   Check,
-  Croissant,
   Crown,
-  LockIcon,
-  LucideBan,
   LucideLock,
-  LucideLockOpen,
   LucideStar,
-  Shield,
-  Star,
 } from "lucide-react";
 import Link from "next/link";
 import {
-  CircularProgressbar,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 
@@ -85,6 +77,9 @@ export const LessonButton = ({
       >
         {current ? (
           <div className="h-[102px] w-[102px] relative">
+            <div className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase text-green-500 bg-white rounded-xl animate-bounce tracking-wide z-10">
+            Empezar
+            </div>
             <CircularProgressbarWithChildren
               value={Number.isNaN(percentage) ? 0 : percentage}
               styles={{

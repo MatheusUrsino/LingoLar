@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClerkProvider, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";

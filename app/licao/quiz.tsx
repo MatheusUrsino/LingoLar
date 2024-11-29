@@ -1,6 +1,6 @@
 "use client";
 
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 import { useState, useTransition } from "react";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
@@ -24,7 +24,11 @@ type Props = {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
-  userSubscription: any;
+  userSubscription:
+    | (typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
 };
 
 export const Quiz = ({
@@ -38,7 +42,7 @@ export const Quiz = ({
   const { open: openPracticeModal } = usePracticeModal();
 
   useMount(() => {
-    if(initialPercentage === 100){
+    if (initialPercentage === 100) {
       openPracticeModal();
     }
   });
@@ -47,11 +51,14 @@ export const Quiz = ({
 
   const router = useRouter();
 
+  // eslint-disable-next-line no-unused-vars
   const [correctAudio, _c, correctControls] = useAudio({ src: "/correto.mp3" });
+  // eslint-disable-next-line no-unused-vars
   const [incorrectAudio, _i, incorrectControls] = useAudio({
     src: "/errado.mp3",
   });
-  const [finishAudio, _f, finishControls] = useAudio({
+  // eslint-disable-next-line no-unused-vars
+  const [finishAudio, _f] = useAudio({
     src: "/completado.mp3",
     autoPlay: true,
   });

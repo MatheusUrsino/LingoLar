@@ -1,7 +1,7 @@
 import db from "@/db/drizzle";
 import { userSubscription } from "@/db/schema";
 import { stripe } from "@/lib/stripe";
-import { error } from "console";
+// eslint-disable-next-line no-unused-vars
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -19,11 +19,17 @@ export async function POST(req: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (error: any) {
-    return new NextResponse(`WebHook error: ${error.message}`, {
+  } catch (error) {
+    if (error instanceof Error) {
+      return new NextResponse(`WebHook error: ${error.message}`, {
+        status: 400,
+      });
+    }
+    return new NextResponse('Unknown WebHook error', {
       status: 400,
     });
   }
+  
 
   const session = event.data.object as Stripe.Checkout.Session;
 

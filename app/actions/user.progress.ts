@@ -1,14 +1,14 @@
 "use server";
 
+import { POINTS_TO_REFIL } from "@/constant";
 import db from "@/db/drizzle";
-import { getCoursesById, getUserProgress } from "@/db/queries";
+import { getCoursesById, getUserProgress, getUserSubscription } from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { error } from "console";
+// eslint-disable-next-line no-unused-vars
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-const POINTS_TO_REFIL = 10;
 
 export const upsertUserProgress = async (courseId: number) => {
   const { userId } = await auth();
@@ -24,11 +24,10 @@ export const upsertUserProgress = async (courseId: number) => {
     throw new Error("Curso não encontrado");
   }
 
-  // Uso: hailitar apenas quando as unidades e lições forem adicionadas
-  // if(!course.units.lenght || !course.units[0].lessons.length)
-  // {
-  //     throw new Error("Curso vazio");
-  // }
+  if(!course.units.length || !course.units[0].lessons.length)
+  {
+      throw new Error("Curso vazio");
+  }
 
   const existingUserProgress = await getUserProgress();
 
@@ -64,6 +63,7 @@ export const reduceHearts = async (challegeId: number) => {
     throw new Error("Mão autorizado")
   }
   const currentUserProgress = await getUserProgress();
+  const userSubscription = await getUserSubscription();
 
   const challenge = await db.query.challenges.findFirst({
     where: eq(challenges.id, challegeId)
@@ -91,6 +91,10 @@ export const reduceHearts = async (challegeId: number) => {
   if(!currentUserProgress)
   {
     throw new Error("progresso do usuario nao encontrado")
+  }
+
+  if(userSubscription?.isActive) {
+    return {error: "subscription"};
   }
 
   if(currentUserProgress.hearts === 0)

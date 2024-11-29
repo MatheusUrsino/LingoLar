@@ -3,10 +3,13 @@ import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Header } from "./header";
 import { UserProgress } from "@/components/user-progress";
-import { getCourseProgress, getLessonPercentage, getUnits, getUserProgress } from "@/db/queries";
+import { getCourseProgress, getLessonPercentage, getUnits, getUserProgress, getUserSubscription } from "@/db/queries";
 import { redirect } from "next/navigation";
 import { Unit } from "./Unit";
+// eslint-disable-next-line no-unused-vars
 import { lessons, units as unitsSchema } from "@/db/schema";
+import { Promo } from "@/components/promo";
+import { Quests } from "@/components/quests";
 
 // Define a página de aprendizado como uma função assíncrona
 const LearnPage = async () => {
@@ -16,14 +19,16 @@ const LearnPage = async () => {
   const courseProgressData = getCourseProgress();
   const lessonPercentageData = getLessonPercentage();
   const unitsData = getUnits();
+  const userSubscriptionData = getUserSubscription();
 
   // Usa Promise.all para resolver todas as promessas simultaneamente e melhorar o desempenho
   const [
     userProgress,
     units,
     courseProgress,
-    lessonPercentage
-  ] = await Promise.all([userProgressData, unitsData, courseProgressData, lessonPercentageData]);
+    lessonPercentage,
+    userSubscription
+  ] = await Promise.all([userProgressData, unitsData, courseProgressData, lessonPercentageData, userSubscriptionData,]);
 
   // Redireciona para a página de cursos se o usuário não tiver um curso ativo
   if (!userProgress || !userProgress.activeCourse) {
@@ -34,6 +39,8 @@ const LearnPage = async () => {
   if (!courseProgress) {
     return redirect("/Cursos");
   }
+  
+  const isPro = !!userSubscription?.isActive;
 
   // Renderiza a página com os componentes necessários
   return (
@@ -44,8 +51,12 @@ const LearnPage = async () => {
           activeCourse={userProgress.activeCourse} // Curso ativo do usuário
           hearts={userProgress.hearts}             // Corações (vida) do usuário
           points={userProgress.points}             // Pontos acumulados
-          hasActiveSubscription={false}            // Estado da assinatura (se tiver)
+          hasActiveSubscription={isPro}            // Estado da assinatura (se tiver)
         />
+        {!isPro && (
+        <Promo />
+        )}
+        <Quests points={userProgress.points}/>
       </StickyWrapper>
 
       {/* FeedWrapper para exibir o conteúdo principal */}

@@ -20,8 +20,6 @@ type Props = {
 
 // Componente Unit renderiza informações da unidade e lista de lições
 export const Unit = ({
-  id,
-  order,
   description,
   title,
   lessons,
