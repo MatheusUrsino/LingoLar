@@ -85,6 +85,9 @@ export const LessonButton = ({
       >
         {current ? (
           <div className="h-[102px] w-[102px] relative">
+            <div className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase text-green-500 bg-white rounded-xl animate-bounce tracking-wide z-10">
+            Empezar
+            </div>
             <CircularProgressbarWithChildren
               value={Number.isNaN(percentage) ? 0 : percentage}
               styles={{
