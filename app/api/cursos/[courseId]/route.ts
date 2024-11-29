@@ -2,7 +2,7 @@ import db from "@/db/drizzle";
 import { courses } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   _req: Request,
@@ -19,7 +19,7 @@ export const GET = async (
 };
 
 export const PUT = async (
-  req: Request,
+  req: NextRequest,
   { params }: { params: { courseId: number } }
 ) => {
   if (!isAdmin()) {
@@ -38,7 +38,7 @@ export const PUT = async (
 };
 
 export const DELETE = async (
-  _req: Request,
+  _req: NextRequest,
   { params }: { params: { courseId: number } }
 ) => {
   if (!isAdmin()) {

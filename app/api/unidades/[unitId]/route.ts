@@ -2,10 +2,10 @@ import db from "@/db/drizzle";
 import { units } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
-  req: Request,
+  req: NextRequest,
   { params }: { params: { unitId: number } }
 ) => {
   if (!isAdmin()) {
@@ -19,7 +19,7 @@ export const GET = async (
 };
 
 export const PUT = async (
-  req: Request,
+  req: NextRequest,
   { params }: { params: { unitId: number } }
 ) => {
   if (!isAdmin()) {
@@ -38,7 +38,7 @@ export const PUT = async (
 };
 
 export const DELETE = async (
-  req: Request,
+  req: NextRequest,
   { params }: { params: { unitId: number } }
 ) => {
   if (!isAdmin()) {
