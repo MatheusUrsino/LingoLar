@@ -1,15 +1,15 @@
 import { auth } from "@clerk/nextjs/server";
 
 const adminIds = [
-    "user_2onwE7iHoPdJeHRGX9dqbt87N0L",
+    "user_2onwE7iHoPdJeHRGX9dqbt87N0L", // IDs dos administradores
 ];
 
-export const isAdmin = async () => {
-    const { userId } = await auth(); // Espera a Promise ser resolvida
+export const isAdmin = () => {
+    const userId = auth();  // Obtém o ID do usuário
 
     if (!userId) {
-        return false; // Retorna false se o userId não estiver presente
+        return false; // Retorna falso se não houver um ID de usuário
     }
 
-    return adminIds.indexOf(userId) !== -1; // Verifica se o userId está na lista de admins
+    return adminIds.indexOf(userId.toString()) !== -1;  // Verifica se o ID do usuário está na lista de admin
 }
