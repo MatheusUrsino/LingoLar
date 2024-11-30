@@ -1,10 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
-import { Admin, ListGuesser, Resource } from "react-admin";
-=======
 import { Admin, Resource } from "react-admin";
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 import simpleRestProvider from "ra-data-simple-rest";
 import { CourseList } from "./curso/list";
 import { CourseCreate } from "./curso/create";

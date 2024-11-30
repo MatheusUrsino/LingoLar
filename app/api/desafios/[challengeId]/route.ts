@@ -5,19 +5,15 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export const GET = async (
-<<<<<<< HEAD
   req: Request,
-  { params }: { params: { challengeId: number } }
-=======
-  _req: Request,
-  { params }: { params: { challengeId: number } },
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
+    { params }: { params: Promise<{ challengeId: number }> }
 ) => {
+    const challengeIdConst = (await params).challengeId
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
   const data = await db.query.challenges.findFirst({
-    where: eq(challenges.id, params.challengeId),
+    where: eq(challenges.id, challengeIdConst),
   });
 
   return NextResponse.json(data);
@@ -25,8 +21,9 @@ export const GET = async (
 
 export const PUT = async (
   req: Request,
-  { params }: { params: { challengeId: number } }
+  { params }: { params: Promise<{ challengeId: number }> }
 ) => {
+  const challengeIdConst = (await params).challengeId
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
@@ -37,24 +34,21 @@ export const PUT = async (
     .set({
       ...body,
     })
-    .where(eq(challenges.id, params.challengeId)).returning();
+    .where(eq(challenges.id, challengeIdConst)).returning();
 
   return NextResponse.json(data[0]);
 };
 
 export const DELETE = async (
-<<<<<<< HEAD
   req: Request,
-=======
-  _req: Request,
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
-  { params }: { params: { challengeId: number } }
+  { params }: { params: Promise<{ challengeId: number }> }
 ) => {
+  const challengeIdConst = (await params).challengeId
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  const data = await db.delete(challenges).where(eq(challenges.id, params.challengeId)).returning();
+  const data = await db.delete(challenges).where(eq(challenges.id, challengeIdConst)).returning();
 
   return NextResponse.json(data[0]);
 };

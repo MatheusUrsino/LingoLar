@@ -1,10 +1,6 @@
 import db from "@/db/drizzle";
 import { courses } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
-<<<<<<< HEAD
-import { request } from "http";
-=======
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 import { NextResponse } from "next/server";
 
 

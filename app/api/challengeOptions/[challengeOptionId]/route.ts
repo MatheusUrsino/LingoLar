@@ -5,17 +5,15 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export const GET = async (
-<<<<<<< HEAD
   req: Request,
-=======
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
-  { params }: { params: { challengeOptionId: number } }
+  { params }: { params: Promise<{ challengeOptionId: number }> }
 ) => {
+  const challengeOptionIdConst = (await params).challengeOptionId;
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
   const data = await db.query.challengeOptions.findFirst({
-    where: eq(challengeOptions.id, params.challengeOptionId),
+    where: eq(challengeOptions.id, challengeOptionIdConst),
   });
 
   return NextResponse.json(data);
@@ -23,8 +21,9 @@ export const GET = async (
 
 export const PUT = async (
   req: Request,
-  { params }: { params: { challengeOptionId: number } }
+  { params }: { params: Promise<{ challengeOptionId: number }> }
 ) => {
+  const challengeOptionIdConst = (await params).challengeOptionId;
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
@@ -35,23 +34,21 @@ export const PUT = async (
     .set({
       ...body,
     })
-    .where(eq(challengeOptions.id, params.challengeOptionId)).returning();
+    .where(eq(challengeOptions.id, challengeOptionIdConst)).returning();
 
   return NextResponse.json(data[0]);
 };
 
 export const DELETE = async (
-<<<<<<< HEAD
   req: Request,
-=======
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
-  { params }: { params: { challengeOptionId: number } }
+  { params }: { params: Promise<{ challengeOptionId: number }> }
 ) => {
+  const challengeOptionIdConst = (await params).challengeOptionId;
   if (!isAdmin()) {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  const data = await db.delete(challengeOptions).where(eq(challengeOptions.id, params.challengeOptionId)).returning();
+  const data = await db.delete(challengeOptions).where(eq(challengeOptions.id, challengeOptionIdConst)).returning();
 
   return NextResponse.json(data[0]);
 };

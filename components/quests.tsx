@@ -4,10 +4,6 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { quests } from "@/constant";
-<<<<<<< HEAD
-import { userProgress } from "@/db/schema";
-=======
->>>>>>> 55697f540eed3abfdd649bc60e8ad910f540a0b1
 import { Progress } from "./ui/progress";
 
 type Props = {
