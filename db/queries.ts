@@ -12,7 +12,6 @@ import {
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { auth } from "@clerk/nextjs/server";
-import { cached } from "sqlite3";
 export const getUserProgress = cache(async () => {
   const { userId } = await auth();
   if (!userId) {

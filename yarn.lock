@@ -109,7 +109,7 @@
     "@clerk/types" "4.35.0"
     tslib "2.4.1"
 
-"@clerk/nextjs@^6.2.1":
+"@clerk/nextjs@^6.5.1":
   version "6.5.1"
   resolved "https://registry.npmjs.org/@clerk/nextjs/-/nextjs-6.5.1.tgz"
   integrity sha512-/FS1wRMOZvEF7azI+DX/DoQ3Q49oqjC3R4GgJzKnd1TIXZxhnPQbM1OvOnwBa7OEieieaXm+aPko+EYPYnSy9A==
