@@ -4,8 +4,8 @@ const allowedIds = [
     "user_2onwE7iHoPdJeHRGX9dqbt87N0L", // IDs dos administradores
 ];
 
-export const isAdmin = async () => {
-    const  userId = await auth();
+export const isAdmin = () => {
+    const  userId = auth();
     const userIdString = userId.toString();
 
     if (!userId) {
