@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Admin, Resource } from "react-admin";
 import simpleRestProvider from "ra-data-simple-rest";
@@ -18,51 +18,47 @@ import { ChallengeOptionList } from "./challengeOption/list";
 import { ChallengeOptionEdit } from "./challengeOption/edit";
 import { ChallengeOptionCreate } from "./challengeOption/create";
 
-
 const dataProvider = simpleRestProvider("/api");
 
 const App = () => (
   <Admin dataProvider={dataProvider}>
-    <Resource 
-    name="cursos"
-    list={CourseList}
-    create={CourseCreate}
-    edit={CourseEdit}
-    recordRepresentation="title" />
-       <Resource 
-    name="unidades"
-    list={UnitList}
-    create={UnitCreate}
-    edit={UnitEdit}
-    recordRepresentation="title" />
-   
-    <Resource 
-    name="licoes"
-    list={LessonList}
-    create={LessonCreate}
-    edit={LessonEdit}
-    recordRepresentation="title" />
-
-<Resource 
-    name="desafios"
-    list={ChallengeList}
-    create={ChallengeCreate}
-    edit={ChallengeEdit}
-    recordRepresentation="question" />
-   
-
-   <Resource 
-    name="challengeOptions"
-    list={ChallengeOptionList}
-    create={ChallengeOptionCreate}
-    edit={ChallengeOptionEdit}
-    recordRepresentation="text" 
-    options={{ label: "Opções do desafio"}}
+    <Resource
+      name="cursos"
+      list={CourseList}
+      create={CourseCreate}
+      edit={CourseEdit}
+      recordRepresentation="title"
     />
-
-   
+    <Resource
+      name="unidades"
+      list={UnitList}
+      create={UnitCreate}
+      edit={UnitEdit}
+      recordRepresentation="title"
+    />
+    <Resource
+      name="licoes"
+      list={LessonList}
+      create={LessonCreate}
+      edit={LessonEdit}
+      recordRepresentation="title"
+    />
+    <Resource
+      name="desafios"
+      list={ChallengeList}
+      create={ChallengeCreate}
+      edit={ChallengeEdit}
+      recordRepresentation="question"
+    />
+    <Resource
+      name="challengeOptions"
+      list={ChallengeOptionList}
+      create={ChallengeOptionCreate}
+      edit={ChallengeOptionEdit}
+      recordRepresentation="text"
+      options={{ label: "Opções do desafio" }}
+    />
   </Admin>
 );
 
 export default App;
-
