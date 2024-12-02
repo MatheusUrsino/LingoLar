@@ -1,23 +1,18 @@
 export const isAdmin = async (password: string): Promise<boolean> => {
-  const correctPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD; // Obtém a senha do .env
-  
-    const loginSuccess = await new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        if (password === correctPassword) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }, 1000);
-    });
-  
-    // Armazena no localStorage o estado da autenticação
-    if (loginSuccess) {
+  const correctPassword = process.env.ADMIN_PASSWORD; // Variável privada sem o prefixo `NEXT_PUBLIC_`
+
+  if (password === correctPassword) {
+    // Quando o login for bem-sucedido, armazene a informação no `localStorage` no lado do cliente
+    if (typeof window !== "undefined") {
+      // Verifica se estamos no lado do cliente antes de usar o localStorage
       localStorage.setItem("isAdmin", "true");
-    } else {
+    }
+    return true;
+  } else {
+    if (typeof window !== "undefined") {
+      // Verifica se estamos no lado do cliente antes de usar o localStorage
       localStorage.setItem("isAdmin", "false");
     }
-  
-    return loginSuccess;
-  };
-  
+    return false;
+  }
+};
