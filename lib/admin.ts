@@ -1,5 +1,5 @@
 export const isAdmin = async (password: string): Promise<boolean> => {
-  const correctPassword = process.env.ADMIN_PASSWORD; // Variável privada sem o prefixo `NEXT_PUBLIC_`
+  const correctPassword = "3nX6vL2yQ1zP9dJ8tM4kR5F0W7uA1Y6bV2L9mQ3W0F8X7pR5T1zK4J6hN9V0L2Q3Y4F7tM8kP9rL1X6W3dZ0"; // Variável privada sem o prefixo `NEXT_PUBLIC_`
 
   if (password === correctPassword) {
     // Quando o login for bem-sucedido, armazene a informação no `localStorage` no lado do cliente
