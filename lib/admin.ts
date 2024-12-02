@@ -1,5 +1,5 @@
 export const isAdmin = async (password: string): Promise<boolean> => {
-    const correctPassword = "123"; // Senha para acesso
+    const correctPassword = process.env.PASSWORD_ADMIN; // Senha para acesso
   
     const loginSuccess = await new Promise<boolean>((resolve) => {
       setTimeout(() => {
