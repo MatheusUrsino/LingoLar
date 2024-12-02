@@ -1,23 +1,17 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export const isAdmin = async (password: string): Promise<boolean> => {
-    const correctPassword = "123"; // Senha para acesso
-  
-    const loginSuccess = await new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        if (password === correctPassword) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }, 1000);
-    });
-  
-    // Armazena no localStorage o estado da autenticação
-    if (loginSuccess) {
-      localStorage.setItem("isAdmin", "true");
-    } else {
-      localStorage.setItem("isAdmin", "false");
-    }
-  
-    return loginSuccess;
-  };
-  
+  const correctPassword = process.env.PASSWORD_ADMIN_SECRET as string; // Senha para acesso
+
+  if (!correctPassword) {
+    throw new Error("Senha de administrador não configurada.");
+  }
+
+  return new Promise<boolean>((resolve) => {
+    setTimeout(() => {
+      resolve(password === correctPassword);
+    }, 1000); // Simula atraso
+  });
+};

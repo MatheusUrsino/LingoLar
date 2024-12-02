@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { isAdmin } from "@/lib/admin";
+
 const AdminLoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -10,13 +11,15 @@ const AdminLoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await isAdmin(password); // Verifica a senha
+    const success = await isAdmin(password);
 
     if (success) {
-      router.push("/admin"); // Redireciona para a página admin
+      localStorage.setItem("isAdmin", "true");
+      router.push("/admin");
     } else {
+      localStorage.setItem("isAdmin", "false");
       setError("Senha incorreta. Tente novamente.");
-      setPassword(""); // Limpa o campo de senha
+      setPassword("");
     }
   };
 

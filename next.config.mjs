@@ -1,3 +1,4 @@
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {
@@ -24,6 +25,11 @@ const nextConfig = {
         ],
       },
     ];
+  },
+
+  // Adicionando variáveis de ambiente ao Next.js
+  env: {
+    PASSWORD_ADMIN_SECRET: process.env.PASSWORD_ADMIN_SECRET, // Garanta que isso esteja no seu .env
   },
 };
 
