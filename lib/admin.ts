@@ -1,18 +1,17 @@
-export const isAdmin = async (password: string): Promise<boolean> => {
-  const correctPassword = process.env.CLERK_SECRET_KEY; // Variável privada sem o prefixo `NEXT_PUBLIC_`
+import dotenv from "dotenv";
 
-  if (password === correctPassword) {
-    // Quando o login for bem-sucedido, armazene a informação no `localStorage` no lado do cliente
-    if (typeof window !== "undefined") {
-      // Verifica se estamos no lado do cliente antes de usar o localStorage
-      localStorage.setItem("isAdmin", "true");
-    }
-    return true;
-  } else {
-    if (typeof window !== "undefined") {
-      // Verifica se estamos no lado do cliente antes de usar o localStorage
-      localStorage.setItem("isAdmin", "false");
-    }
-    return false;
+dotenv.config();
+
+export const isAdmin = async (password: string): Promise<boolean> => {
+  const correctPassword = process.env.PASSWORD_ADMIN_SECRET as string; // Senha para acesso
+
+  if (!correctPassword) {
+    throw new Error("Senha de administrador não configurada.");
   }
+
+  return new Promise<boolean>((resolve) => {
+    setTimeout(() => {
+      resolve(password === correctPassword);
+    }, 1000); // Simula atraso
+  });
 };
