@@ -5,9 +5,7 @@ import { NextResponse } from "next/server";
 
 
 export const GET = async () => {
-  if (!isAdmin()) {
-    return new NextResponse("Unauthorized", { status: 401 });
-  }
+ 
 
   const data = await db.query.courses.findMany();
 
@@ -16,9 +14,7 @@ export const GET = async () => {
 
 
 export const POST = async (req: Request) => {
-    if (!isAdmin()) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+   
   
     const body = await req.json();
 

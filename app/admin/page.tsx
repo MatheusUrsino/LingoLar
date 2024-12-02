@@ -1,18 +1,32 @@
-'use client'
-import { isAdmin } from "@/lib/admin";  // Importando o hook com o nome isAdmin
-import { redirect } from "next/navigation";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
-const App = dynamic(() => import("./app"), { ssr: false });
+// Carrega o componente App de forma dinâmica, apenas se o usuário for admin
+const AdminApp = dynamic(() => import("./app"), { ssr: false });
 
 const AdminPage = () => {
-  const isAdminUser = isAdmin();  // Usando o hook isAdmin corretamente
+  const [isAdmin, setIsAdmin] = useState(false);
+  const router = useRouter();
 
-  if (!isAdminUser) {
-    redirect("/");  // Redireciona se não for admin
+  useEffect(() => {
+    const adminStatus = localStorage.getItem("isAdmin");
+
+    // Verifica o status de admin armazenado no localStorage
+    if (adminStatus === "true") {
+      setIsAdmin(true);
+    } else {
+      router.push("/verificarAdmin"); // Redireciona para a página de login se não for admin
+    }
+  }, [router]);
+
+  if (!isAdmin) {
+    return null; // Enquanto não estiver autenticado, não exibe nada
   }
 
-  return <App />;
-}
+  return <AdminApp />; // Exibe a área admin se o usuário for admin
+};
 
 export default AdminPage;

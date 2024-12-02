@@ -9,9 +9,7 @@ export const GET = async (
   { params }: { params: Promise<{ challengeOptionId: number }> }
 ) => {
   const challengeOptionIdConst = (await params).challengeOptionId;
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+
   const data = await db.query.challengeOptions.findFirst({
     where: eq(challengeOptions.id, challengeOptionIdConst),
   });
@@ -24,9 +22,8 @@ export const PUT = async (
   { params }: { params: Promise<{ challengeOptionId: number }> }
 ) => {
   const challengeOptionIdConst = (await params).challengeOptionId;
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+  const correctPassword = "123"; // Senha para acesso
+
 
   const body = await req.json();
   const data = await db
@@ -44,9 +41,8 @@ export const DELETE = async (
   { params }: { params: Promise<{ challengeOptionId: number }> }
 ) => {
   const challengeOptionIdConst = (await params).challengeOptionId;
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+  const correctPassword = "123"; // Senha para acesso
+
 
   const data = await db.delete(challengeOptions).where(eq(challengeOptions.id, challengeOptionIdConst)).returning();
 

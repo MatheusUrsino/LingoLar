@@ -11,13 +11,12 @@ import {
 export const ChallengeOptionCreate: React.FC = () => (
   <Create>
     <SimpleForm>
+      <TextInput source="id" validate={[required()]} label="ID" />
+
       <TextInput source="text" validate={[required()]} label="Texto" />
-      <BooleanInput
-       source="correct"
-       label="Opção correta"
-      />
+      <BooleanInput source="correct" label="Opção correta" />
       <ReferenceInput source="challengeId" reference="desafios" />
-      <TextInput source="imageSrc"  label="URL da imagem" />
+      <TextInput source="imageSrc" label="URL da imagem" />
       <TextInput source="audioSrc" label="URL do Audio" />
     </SimpleForm>
   </Create>

@@ -10,9 +10,7 @@ export const GET = async (
   
 ) => {
   const courseIdConst = (await params).courseId
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+ 
   const data = await db.query.courses.findFirst({
     where: eq(courses.id, courseIdConst),
   });
@@ -25,9 +23,7 @@ export const PUT = async (
   { params }: { params: Promise<{ courseId: number }> }
 ) => {
   const courseIdConst = (await params).courseId
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+ 
 
   const body = await req.json();
   const data = await db
@@ -45,9 +41,7 @@ export const DELETE = async (
   { params }: { params: Promise<{ courseId: number }> }
 ) => {
   const courseIdConst = (await params).courseId
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+ 
 
   const data = await db.delete(courses).where(eq(courses.id, courseIdConst)).returning();
 

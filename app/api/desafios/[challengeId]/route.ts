@@ -9,9 +9,7 @@ export const GET = async (
     { params }: { params: Promise<{ challengeId: number }> }
 ) => {
     const challengeIdConst = (await params).challengeId
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+ 
   const data = await db.query.challenges.findFirst({
     where: eq(challenges.id, challengeIdConst),
   });
@@ -24,9 +22,7 @@ export const PUT = async (
   { params }: { params: Promise<{ challengeId: number }> }
 ) => {
   const challengeIdConst = (await params).challengeId
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+ 
 
   const body = await req.json();
   const data = await db
@@ -44,9 +40,7 @@ export const DELETE = async (
   { params }: { params: Promise<{ challengeId: number }> }
 ) => {
   const challengeIdConst = (await params).challengeId
-  if (!isAdmin()) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+ 
 
   const data = await db.delete(challenges).where(eq(challenges.id, challengeIdConst)).returning();
 

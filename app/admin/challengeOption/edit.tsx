@@ -11,7 +11,8 @@ import {
 export const ChallengeOptionEdit: React.FC = () => (
   <Edit>
     <SimpleForm>
-      
+    <TextInput source="id" validate={[required()]} label="ID" />
+
       <TextInput source="text" validate={[required()]} label="texto" />
       <BooleanInput
        source="correct"

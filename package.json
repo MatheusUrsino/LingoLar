@@ -9,6 +9,7 @@
     "lint": "next lint",
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
+    "db:prod": "tsx ./scripts/prod.ts",
     "db:seed": "tsx ./scripts/seed.ts",
     "db:reset": "tsx ./scripts/reset.ts"
   },
@@ -26,6 +27,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.0",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.454.0",
     "mysql2": "^3.11.3",
     "next": "^15.0.3",

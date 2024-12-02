@@ -12,6 +12,8 @@ import {
 export const ChallengeEdit: React.FC = () => (
   <Edit>
     <SimpleForm>
+    <TextInput source="id" validate={[required()]} label="ID" />
+
       <TextInput source="question" validate={[required()]} label="Question" />
 
       <SelectInput

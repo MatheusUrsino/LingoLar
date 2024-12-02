@@ -1,19 +1,23 @@
-import { useAuth } from "@clerk/nextjs";
-
-const allowedIds = [
-    "user_2onwE7iHoPdJeHRGX9dqbt87N0L", // IDs dos administradores
-];
-
-// A função é agora um hook, mas será exportada como isAdmin
-export const useIsAdmin = () => {  // Hooks devem começar com "use"
-    const { userId } = useAuth();
-
-    if (!userId) {
-        return false; // Retorna falso se não houver um ID de usuário
+export const isAdmin = async (password: string): Promise<boolean> => {
+    const correctPassword = "123"; // Senha para acesso
+  
+    const loginSuccess = await new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        if (password === correctPassword) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      }, 1000);
+    });
+  
+    // Armazena no localStorage o estado da autenticação
+    if (loginSuccess) {
+      localStorage.setItem("isAdmin", "true");
+    } else {
+      localStorage.setItem("isAdmin", "false");
     }
-
-    return allowedIds.indexOf(userId) !== -1; // Verifica se o ID do usuário está na lista de admin
-};
-
-// Exportando com o nome "isAdmin" para manter a compatibilidade
-export const isAdmin = useIsAdmin;
+  
+    return loginSuccess;
+  };
+  
