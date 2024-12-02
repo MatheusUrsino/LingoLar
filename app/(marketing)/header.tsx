@@ -12,7 +12,7 @@ import Image from "next/image";
 
 export const Header = () => {
   return (
-    <header className="h-20 w-full border-b-2 border-slate-200 px-4">
+    <header className="h-20 w-full border-slate-200 px-4 bg-[#002C3B]">
       <div className="lg:max-w-screen mx-auto flex items-center justify-between h-full">
 
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">

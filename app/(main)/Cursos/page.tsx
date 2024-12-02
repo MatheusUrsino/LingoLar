@@ -11,12 +11,14 @@ const CoursesPage = async () => {
   ]);
 
   return (
-    <div className="h-full max-w-[1080px] px-3 mx-auto">
-      <h1 className="text-2xl font-bold text-neutral-700">Courses Page</h1>
+    <div className="max-w-[1080px] px-3 mx-auto flex flex-col justify-center my-auto">
+      <h1 className="text-2xl font-bold text-neutral-700 text-center pb-5 ">Pagina de Cursos</h1>
+      <div className="ml-auto mr-auto">
       <List
         courses={courses} // Passa os dados de cursos para o componente List
         activeCourseId={userProgress?.activeCourseId} // Passa o curso ativo do progresso do usuário
       />
+      </div>
     </div>
   );
 };

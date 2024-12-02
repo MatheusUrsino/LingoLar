@@ -5,7 +5,7 @@ export const MobileHeader = () => {
 <nav
   className="lg:hidden px-6 h-[50px] flex items-center border-b fixed top-0 w-full z-50"
   style={{
-    backgroundImage: `linear-gradient(to right, #FFB547, #F6794A)`, // Gradiente dinâmico
+    backgroundImage: `linear-gradient(to right, #367B8D, #1D4A59)`, // Gradiente dinâmico
   }}
 >
   <MobileSidebar />

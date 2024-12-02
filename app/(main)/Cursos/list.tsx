@@ -32,7 +32,7 @@ const onClick = (id:number) => {
 }
 
     return(
-        <div className=" pt-6 grid grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-10 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {courses.map((course) => (
         <Card 
         key={course.id}

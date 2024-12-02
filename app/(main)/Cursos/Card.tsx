@@ -23,7 +23,7 @@ export const Card = ({
     <div
       onClick={() => onClick(id)}
       className={cn(
-        "h-full border-2 rounded-xl border-b-4 hover:bg-black/5 cursor-pointer active:border-b-2 flex flex-col items-center justify-between p-3 pb-6 min-h-[217px] min-w-[200px]",
+        "h-full border-2 rounded-xl border-b-4 hover:bg-black/5 cursor-pointer active:border-b-2 flex flex-col items-center justify-between p-3 pb-6 min-h-[287px] min-w-[250px]",
         disabled && "pointer-events-none opacity-50"
       )}
     >
@@ -37,10 +37,10 @@ export const Card = ({
      <Image 
      src={imageSrc}
      alt={title}
-     height={70}
-     width={93.33}
-     className="rounded-lg drop-shadow-md border object-cover" />
-     <p className="text-neutral-700 text-center font-bold mt-3">
+     height={130}
+     width={170.33}
+     className="rounded-3xl drop-shadow-md border object-cover" />
+     <p className="text-neutral-700 text-center font-bold mt-0 text-[25px]">
         {title}
      </p>
     </div>
