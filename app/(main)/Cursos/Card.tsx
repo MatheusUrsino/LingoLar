@@ -30,7 +30,7 @@ export const Card = ({
       <div className="min-[24px] w-full flex items-center justify-end">
         {active && (
           <div className="bg-green-600 rounded-md flex items-center justify-center p-1.5">
-            <Check className="text-white stroke-[3] h-4 w-4" />
+            <Check className="text-white stroke-[3] h-4 w-4 " />
           </div>
         )}
       </div>
@@ -39,7 +39,7 @@ export const Card = ({
      alt={title}
      height={130}
      width={170.33}
-     className="rounded-3xl drop-shadow-md border object-cover" />
+     className="rounded-3xl drop-shadow-md border object-cover " />
      <p className="text-neutral-700 text-center font-bold mt-0 text-[25px]">
         {title}
      </p>

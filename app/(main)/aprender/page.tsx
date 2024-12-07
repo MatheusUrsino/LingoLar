@@ -66,7 +66,7 @@ const LearnPage = async () => {
 
         {/* Mapeia cada unidade para renderizar um componente Unit com seus detalhes */}
         {units.map((unit) => (
-          <div key={unit.id} className="mb-10">
+          <div key={unit.id} className="mb-10 ">
             <Unit
               id={unit.id}                       // ID da unidade
               order={unit.order}                 // Ordem da unidade no curso

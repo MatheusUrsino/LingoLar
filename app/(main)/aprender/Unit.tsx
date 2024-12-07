@@ -25,11 +25,12 @@ export const Unit = ({
   lessons,
   activeLesson,
   activeLessonPercentage,
+  id
 }: Props) => {
   return (
     <>
       {/* Renderiza o banner da unidade com título e descrição */}
-      <UnitBanner title={title} description={description} />
+      <UnitBanner title={title} description={description} id={id}/>
 
       {/* Container flexível para exibir as lições em formato de coluna */}
       <div className="flex items-center flex-col relative ">

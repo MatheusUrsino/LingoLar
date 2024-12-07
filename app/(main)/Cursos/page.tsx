@@ -11,7 +11,8 @@ const CoursesPage = async () => {
   ]);
 
   return (
-    <div className="max-w-[1080px] px-3 mx-auto flex flex-col justify-center my-auto">
+    
+    <div className="max-w-[1080px] px-3 mx-auto flex flex-col justify-center my-auto ">
       <h1 className="text-2xl font-bold text-neutral-700 text-center pb-5 ">Pagina de Cursos</h1>
       <div className="ml-auto mr-auto">
       <List

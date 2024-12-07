@@ -33,7 +33,7 @@ export const Header = () => {
             </SignedIn>
             <SignedOut>
               <SignInButton mode="modal">
-                <Button size="lg" variant="Ghost">
+                <Button size="lg" variant="Ghost" className="text-white hover:text-blue-950">
                   Entrar
                 </Button>
               </SignInButton>
