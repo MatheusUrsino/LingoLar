@@ -40,7 +40,38 @@ export default function RootLayout({
           <ExitModal />
           <HeartsModal />
           <PracticeModal />
+
+          {/* Adicionando o GTranslate aqui */}
+
           {children}
+          <script
+            src="https://cdn.userway.org/widget.js"
+            data-account="FTLIBwdhM1"
+          ></script>
+          <div className="gtranslate_wrapper"> </div>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.gtranslateSettings = {
+                  default_language: "pt",
+                  native_language_names: true,
+                  detect_browser_language: true,
+                  languages: ["pt", "es", "en", "ca", "de", "it", "fr", "ru", "de"],
+                  globe_color: "#F6794A",
+                  wrapper_selector: ".gtranslate_wrapper",
+                  horizontal_position: "right",
+                  vertical_position: "bottom",
+                  alt_flags: { pt: "brazil" },
+                };
+              `,
+            }}
+          ></script>
+          <script
+            src="https://cdn.gtranslate.net/widgets/latest/globe.js"
+            defer
+          ></script>
+
+          
         </body>
       </html>
     </ClerkProvider>

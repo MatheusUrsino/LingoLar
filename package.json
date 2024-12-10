@@ -22,7 +22,9 @@
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@vue-a11y/vlibras": "^1.0.4",
     "add": "^2.0.6",
+    "angular-vlibras": "^0.2.2",
     "better-sqlite3": "^11.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -47,6 +49,7 @@
     "stripe": "^17.4.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "vlibras-nextjs": "^1.1.2",
     "yarn": "^1.22.22",
     "zustand": "^5.0.1"
   },
